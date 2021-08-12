@@ -49,24 +49,24 @@ if(isset($_POST['giris_yap'])) {
 }
 
 if(isset($_POST['randevu_kaydet'])) {
-    $randevu_sehir = isset($_POST['sehir']) ? $_POST['sehir'] : null;
-    $randevu_hastane = isset($_POST['hastane']) ? $_POST['hastane'] : null;
-    $randevu_doktor = isset($_POST['doktor']) ? $_POST['doktor'] : null;
-    $randevu_tarih = isset($_POST['tarih']) ? $_POST['tarih'] : null;
-    $randevu_klinik = isset($_POST['klinik']) ? $_POST['klinik'] : null;
+    $sehir = isset($_POST['sehir']) ? $_POST['sehir'] : null;
+    $hastane = isset($_POST['hastane']) ? $_POST['hastane'] : null;
+    $doktor = isset($_POST['doktor']) ? $_POST['doktor'] : null;
+    $tarih = isset($_POST['tarih']) ? $_POST['tarih'] : null;
+    $klinik = isset($_POST['klinik']) ? $_POST['klinik'] : null;
     $hasta_id = isset($_POST['kullanici_id']) ? $_POST['kullanici_id'] : null;
 
-    $kaydet=$db->prepare("INSERT INTO randevu SET
-        randevu_sehir = ?,
-        randevu_hastane = ?,
-        randevu_doktor = ?,
-        randevu_tarih = ?,
-        randevu_klinik = ?,
+    $kaydet=$db->prepare("INSERT INTO randevular SET
+        sehir = ?,
+        hastane = ?,
+        doktor = ?,
+        tarih = ?,
+        klinik = ?,
         randevu_hasta_id = ?
     ");
 
     $insert=$kaydet->execute([
-        $randevu_sehir, $randevu_hastane, $randevu_doktor, $randevu_tarih, $randevu_klinik, $hasta_id
+        $sehir, $hastane, $doktor, $tarih, $klinik, $hasta_id
     ]);
     if($insert) {
         header("location:anasayfa.php?kayıt_basarili");
